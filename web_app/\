@@ -1,0 +1,18 @@
+from flask import Flask
+from flask import request
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    user_agent = request.headers.get('User-Agent')
+    return '<h1>your browser is %s~</h1>' % user_agent
+
+def user(name):
+    return '<h1>Hello %s~</h1>' % name
+
+@app.route('/failure')
+def failed():
+    return '<h1>bad request</h1>' ,400
+if __name__=='__main__':
+    app.run(debug=True)
+
